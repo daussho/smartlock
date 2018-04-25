@@ -1,0 +1,6 @@
+- install python
+- install django
+- install mysql
+- import mysql
+- edit smartlock/settings.py, tambah ip di ALLOWED_HOST
+- python3 manage.py runserver ip:port
