@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['192.168.9.3', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'smartlock.apps.SmartLock',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'smartlock.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['smartlock/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

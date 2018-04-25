@@ -9,6 +9,5 @@ class Users(models.Model):
 
 
 class Logs(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    user_id = models.CharField(max_length=10)
+    time = models.DateTimeField()
