@@ -23,6 +23,8 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('home', views.home, name='home'),
     path('logout', views.logout, name='logout'),
+    path('log', views.log, name='log'),
+    path('setting', views.setting, name='setting'),
     #path('date', views.date, name='login'),
 
 ]

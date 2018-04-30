@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Home</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+   </head>
+   <body>
+        {% include "navbar.html" %}
+        <br><br><br>
+         <div class="container-fluid">
+             <center>
+                <div class="row">
+                   <div class="col-sm-4"></div>
+                   <div class="col-sm-4">
+                       <p><h1>Log Report</h1></p><br>
+                       {{ tes }}
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% autoescape off %}{{ results }}{% endautoescape %}
+                            </tbody>
+                        </table>
+                   </div>
+                   <div class="col-sm-4"></div>
+                </div>
+             </center>
+         </div>
+   </body>
+</html>

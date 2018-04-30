@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Users
+from .models import Logs
 import hashlib
 import datetime
 from django.template import loader
@@ -53,20 +54,29 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 def logout(request):
-    #current_date = datetime.datetime.now()
-    template = loader.get_template('home.html')
-    context = {
-        #'current_date': current_date,
-    }
-    #return HttpResponse(template.render(context, request))
     request.session.flush()
     request.session['status'] = 'guest'
     return redirect('index')
 
-def tes(request):
-    current_date = datetime.datetime.now()
-    template = loader.get_template('tes.html')
+def log(request):
+    #current_date = datetime.datetime.now()
+    if (request.session['status'] == 'guest'):
+        return redirect('index')
+
+    logs = Logs.objects.all()
+    template = loader.get_template('log.html')
+
+    data = ''
+    for i in range(0, len(logs)):
+        data += "<tr><td>"+(logs[i].time.strftime("%Y-%m-%d %H:%M:%S"))+"</td><td>"+logs[i].user_id+"</td></tr>"
+
     context = {
-        'current_date': current_date,
+        'results': data,
+        #'tes': logs[0].time,
     }
+
     return HttpResponse(template.render(context, request))
+
+def setting(request):
+
+    return
