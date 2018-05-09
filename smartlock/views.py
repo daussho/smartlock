@@ -78,31 +78,46 @@ def log(request):
     return HttpResponse(template.render(context, request))
 
 def setting(request):
-    if request.method == 'GET':
-        if (request.session['status'] == 'guest'):
-            return redirect('index')
-        template = loader.get_template('setting.html')
-        context = {
-            #'current_date': current_date,
-        }
-        return HttpResponse(template.render(context, request))
-    else:
-        return redirect('setting')
+    if (request.session['status'] == 'guest'):
+        return redirect('index')
+
+    template = loader.get_template('setting.html')
+    context = {
+        'status': ' ',
+    }
+    if request.method == 'POST':
+        pwd1 = hashlib.sha256((request.POST['pwd1']).encode()).hexdigest()
+        pwd2 = hashlib.sha256((request.POST['pwd2']).encode()).hexdigest()
+
+        if (pwd1 == pwd2):
+            u = Users.objects.filter(user_id = 'admin').update(password = pwd1)
+            context = {
+                'status': 'Success',
+            }
+        else:
+            context = {
+                'status': 'Password does not match!',
+            }
+
+
+    return HttpResponse(template.render(context, request))
 
 def lock(request):
-    #current_date = datetime.datetime.now()
     if (request.session['status'] == 'guest'):
         return redirect('index')
 
     template = loader.get_template('lock.html')
-
-    data = ''
-    for i in range(0, len(logs)):
-        data += "<tr><td>"+(logs[i].time.strftime("%Y-%m-%d %H:%M:%S"))+"</td><td>"+logs[i].user_id+"</td></tr>"
-
     context = {
-        'results': data,
-        #'tes': logs[0].time,
+        #'status': 'Password does not match!',
     }
 
+    #if request.method == 'POST':
+        #if (request.POST['lock'] == 'on'):
+
+    #else:
+
+
     return HttpResponse(template.render(context, request))
+
+def stream(request):
+    return

@@ -24,6 +24,8 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('logout', views.logout, name='logout'),
     path('log', views.log, name='log'),
+    path('lock', views.lock, name='lock'),
+    path('stream', views.stream, name='stream'),
     path('setting', views.setting, name='setting'),
     #path('date', views.date, name='login'),
 
